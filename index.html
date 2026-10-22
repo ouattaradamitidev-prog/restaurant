@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food Restaurant</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--------- HEADER ---------->
+    <header>
+        <a href="#home" class="logo"><i class="fas fa-utensils"></i> Fast Food</a>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Accueil</a>
+            <a href="#dishes">Plats</a>
+            <a href="#about">À propos</a>
+            <a href="#menu">Menu</a>
+            <a href="#review">Critiques</a>
+            <a href="#order">Commander</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="#" class="fas fa-heart" title="Favoris">
+                <span class="fav-badge" id="favCount">0</span>
+            </a>
+            <a href="panier.html" class="fas fa-shopping-cart" title="Panier">
+                <span class="cart-badge" id="cartCount">0</span>
+            </a>
+            <!-- <a href="contact.html" class="fas fa-user" title="Mon Profil" id="profileIcon"></a> -->
+        </div>
+    </header>
+
+    <!--------- RECHERCHE ---------->
+    <form action="" id="search-form">
+        <input type="search" placeholder="RECHERCHE" id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    </form>
+
+    <!--------- ACCUEIL ---------->
+    <section class="home" id="home">
+        <div class="swiper home-slider">
+            <div class="swiper-wrapper wrapper">
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>notre plat spécial</span>
+                        <h3>frites au poulet</h3>
+                        <p>Découvrez nos frites croustillantes accompagnées de poulet tendre et savoureux, un régal pour vos papilles !</p>
+                        <a href="#menu" class="btn">commander maintenant</a>
+                    </div>
+                    <div class="image">
+                        <img src="./IMAGE/img1.png" alt="Frites au poulet">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>notre plat spécial</span>
+                        <h3>plat sain</h3>
+                        <p>Des plats équilibrés et délicieux pour votre bien-être quotidien, préparés avec des ingrédients frais.</p>
+                        <a href="#menu" class="btn">commander maintenant</a>
+                    </div>
+                    <div class="image">
+                        <img src="./IMAGE/img6.png" alt="Plat sain">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>notre plat spécial</span>
+                        <h3>burger deluxe</h3>
+                        <p>Le meilleur burger de la ville avec des ingrédients frais et de qualité supérieure.</p>
+                        <a href="#menu" class="btn">commander maintenant</a>
+                    </div>
+                    <div class="image">
+                        <img src="./IMAGE/img5.png" alt="Burger">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!--------- PLATS ---------->
+    <section class="dishes" id="dishes">
+        <h3 class="sub-heading">Nos plats</h3>
+        <h1 class="heading">Plats populaires</h1>
+
+        <div class="box-container">
+            <div class="box" data-name="Burger Deluxe" data-price="3500">
+                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Burger Deluxe')"></a>
+                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Burger Deluxe')"></a>
+                <img src="./IMAGE/img2.png" alt="Burger">
+                <h3>Burger Deluxe</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>3,500 FCFA</span>
+                <a href="javascript:void(0)" class="btn" onclick="addToCart('Burger Deluxe', 3500)">ajouter au panier</a>
+            </div>
+
+            <div class="box" data-name="Pizza Margherita" data-price="5000">
+                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Pizza Margherita')"></a>
+                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Pizza Margherita')"></a>
+                <img src="./IMAGE/plat2.png" alt="Pizza">
+                <h3>Pizza Margherita</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span>5,000 FCFA</span>
+                <a href="javascript:void(0)" class="btn" onclick="addToCart('Pizza Margherita', 5000)">ajouter au panier</a>
+            </div>
+
+            <div class="box" data-name="Frites Croustillantes" data-price="1500">
+                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Frites Croustillantes')"></a>
+                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Frites Croustillantes')"></a>
+                <img src="./IMAGE/PLAT3.png" alt="Frites">
+                <h3>Frites Croustillantes</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>1,500 FCFA</span>
+                <a href="javascript:void(0)" class="btn" onclick="addToCart('Frites Croustillantes', 1500)">ajouter au panier</a>
+            </div>
+
+            <div class="box" data-name="Poulet Grillé" data-price="4500">
+                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Poulet Grillé')"></a>
+                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Poulet Grillé')"></a>
+                <img src="./IMAGE/IJJ.png" alt="Poulet">
+                <h3>Poulet Grillé</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span>4,500 FCFA</span>
+                <a href="javascript:void(0)" class="btn" onclick="addToCart('Poulet Grillé', 4500)">ajouter au panier</a>
+            </div>
+
+            <div class="box" data-name="Tacos Mexicain" data-price="3000">
+                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Tacos Mexicain')"></a>
+                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Tacos Mexicain')"></a>
+                <img src="./IMAGE/img4.png" alt="Tacos">
+                <h3>Tacos Mexicain</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>3,000 FCFA</span>
+                <a href="javascript:void(0)" class="btn" onclick="addToCart('Tacos Mexicain', 3000)">ajouter au panier</a>
+            </div>
+
+            <div class="box" data-name="Salade César" data-price="2500">
+                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Salade César')"></a>
+                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Salade César')"></a>
+                <img src="./IMAGE/BURGER2.png" alt="Salade">
+                <h3>Salade César</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span>2,500 FCFA</span>
+                <a href="javascript:void(0)" class="btn" onclick="addToCart('Salade César', 2500)">ajouter au panier</a>
+            </div>
+        </div>
+    </section>
+
+    <!--------- À PROPOS ---------->
+    <section class="about" id="about">
+        <h3 class="sub-heading">À propos de nous</h3>
+        <h1 class="heading">Pourquoi nous choisir ?</h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="./IMAGE/img6.png" alt="Restaurant">
+            </div>
+
+            <div class="content">
+                <h3>meilleure nourriture du pays</h3>
+                <p>Depuis plus de 10 ans, nous servons les meilleurs plats de fast food avec des ingrédients frais et de qualité. Notre passion pour la cuisine et notre engagement envers l'excellence font de nous le choix numéro un.</p>
+                <p>Nos chefs expérimentés préparent chaque plat avec amour et attention aux détails pour garantir votre satisfaction à chaque bouchée.</p>
+                <div class="icons-container">
+                    <div class="icons">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>livraison rapide</span>
+                    </div>
+                    <div class="icons">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>paiement facile</span>
+                    </div>
+                    <div class="icons">
+                        <i class="fas fa-headset"></i>
+                        <span>service 24/7</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="btn">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!--------- MENU ---------->
+    <section class="menu" id="menu">
+        <h3 class="sub-heading">notre menu</h3>
+        <h1 class="heading">Spécialité du jour</h1>
+
+        <div class="box-container">
+            <div class="box" data-name="Wrap Poulet" data-price="3200">
+                <div class="image">
+                    <img src="./IMAGE/c5.jpg" alt="Wrap">
+                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Wrap Poulet')"></a>
+                </div>
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>Wrap Poulet</h3>
+                    <p>Wrap garni de poulet grillé, légumes frais et sauce spéciale</p>
+                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Wrap Poulet', 3200)">ajouter</a>
+                    <span class="pice">3,200 FCFA</span>
+                </div>
+            </div>
+
+            <div class="box" data-name="Nuggets Box" data-price="2800">
+                <div class="image">
+                    <img src="./IMAGE/c7.jpg" alt="Nuggets">
+                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Nuggets Box')"></a>
+                </div>
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Nuggets Box</h3>
+                    <p>10 nuggets croustillants avec sauce au choix</p>
+                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Nuggets Box', 2800)">ajouter</a>
+                    <span class="pice">2,800 FCFA</span>
+                </div>
+            </div>
+
+            <div class="box" data-name="Hot Dog Premium" data-price="2200">
+                <div class="image">
+                    <img src="./IMAGE/c8.jpg" alt="Hot Dog">
+                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Hot Dog Premium')"></a>
+                </div>
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>Hot Dog Premium</h3>
+                    <p>Saucisse de qualité avec garniture complète</p>
+                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Hot Dog Premium', 2200)">ajouter</a>
+                    <span class="pice">2,200 FCFA</span>
+                </div>
+            </div>
+
+            <div class="box" data-name="Sandwich Club" data-price="3500">
+                <div class="image">
+                    <img src="./IMAGE/p3.jpg" alt="Sandwich">
+                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Sandwich Club')"></a>
+                </div>
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Sandwich Club</h3>
+                    <p>Triple sandwich avec poulet, bacon et œuf</p>
+                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Sandwich Club', 3500)">ajouter</a>
+                    <span class="pice">3,500 FCFA</span>
+                </div>
+            </div>
+
+            <div class="box" data-name="Pasta Carbonara" data-price="4000">
+                <div class="image">
+                    <img src="./IMAGE/p5.jpg" alt="Pasta">
+                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Pasta Carbonara')"></a>
+                </div>
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>Pasta Carbonara</h3>
+                    <p>Pâtes crémeuses avec lardons et parmesan</p>
+                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Pasta Carbonara', 4000)">ajouter</a>
+                    <span class="pice">4,000 FCFA</span>
+                </div>
+            </div>
+
+            <div class="box" data-name="Menu Enfant" data-price="2000">
+                <div class="image">
+                    <img src="./IMAGE/p6.jpg" alt="Menu Enfant">
+                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Menu Enfant')"></a>
+                </div>
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Menu Enfant</h3>
+                    <p>Nuggets, frites et boisson avec jouet surprise</p>
+                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Menu Enfant', 2000)">ajouter</a>
+                    <span class="pice">2,000 FCFA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--------- CRITIQUES ---------->
+    <section class="critique" id="review">
+        <h3 class="sub-heading">Avis du client</h3>
+        <h1 class="heading">Ce qu'ils disent</h1>
+        <div class="swiper critique-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <p>"Un service impeccable et des plats délicieux ! Je recommande vivement ce restaurant à tous mes amis."</p>
+                    <h3>- Marie Kouassi</h3>
+                </div>
+                <div class="swiper-slide">
+                    <p>"Meilleur restaurant de la ville, je recommande vivement. La qualité est toujours au rendez-vous."</p>
+                    <h3>- Jean Koffi</h3>
+                </div>
+                <div class="swiper-slide">
+                    <p>"Ambiance chaleureuse et cuisine raffinée. Un vrai régal à chaque visite !"</p>
+                    <h3>- Ama Yao</h3>
+                </div>
+                <div class="swiper-slide">
+                    <p>"Livraison rapide et plats toujours chauds. Le service client est excellent !"</p>
+                    <h3>- Konan Assi</h3>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!--------- COMMANDER ---------->
+    <section class="order" id="order">
+        <h3 class="sub-heading">Commandez maintenant</h3>
+        <h1 class="heading">Gratuit et rapide</h1>
+
+        <form id="orderForm">
+            <div class="inputBox">
+                <div class="input">
+                    <span>Votre Nom</span>
+                    <input type="text" name="name" placeholder="Entrez Votre Nom" required>
+                </div>
+                <div class="input">
+                    <span>Votre Numéro</span>
+                    <input type="tel" name="Number" placeholder="Entrez Votre numéro" required>
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>Votre commande</span>
+                    <input type="text" name="food name" placeholder="Entrez le nom du plat" required>
+                </div>
+                <div class="input">
+                    <span>Supplémentaire</span>
+                    <input type="text" name="extra with food" placeholder="Supplément avec la nourriture">
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>Combien</span>
+                    <input type="number" name="order" placeholder="Combien de commande ?" min="1" required>
+                </div>
+                <div class="input">
+                    <span>Date et heure</span>
+                    <input type="datetime-local" name="date" required>
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>Votre adresse</span>
+                    <textarea name="address" placeholder="Entrez Votre adresse" cols="30" rows="10" required></textarea>
+                </div>
+                <div class="input">
+                    <span>Votre message</span>
+                    <textarea name="message" placeholder="Entrez Votre message" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+
+            <input type="submit" value="Commander Maintenant" class="btn">
+        </form>
+    </section>
+
+    <!--------- FOOTER ---------->
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Emplacements</h3>
+                <a href="contact.html">Plateau - Abidjan</a>
+                <a href="contact.html">Cocody - Abidjan</a>
+                <a href="contact.html">Marcory - Abidjan</a>
+                <a href="contact.html">Yopougon - Abidjan</a>
+                <a href="contact.html">Koumassi - Abidjan</a>
+            </div>
+
+            <div class="box">
+                <h3>Liens rapides</h3>
+                <a href="#home">Accueil</a>
+                <a href="#dishes">Plats</a>
+                <a href="#menu">Menu</a>
+                <a href="#review">Critiques</a>
+                <a href="#about">À propos</a>
+                <a href="#order">Commande</a>
+            </div>
+
+            <div class="box">
+                <h3>Coordonnées</h3>
+                <a href="tel:+2250123456789">+225 01 23 45 67 89</a>
+                <a href="tel:+2250987654321">+225 09 87 65 43 21</a>
+                <a href="mailto:contact@fastfood.ci">contact@fastfood.ci</a>
+                <a href="mailto:commande@fastfood.ci">commande@fastfood.ci</a>
+                <a href="contact.html">Nous contacter</a>
+            </div>
+
+            <div class="box">
+                <h3>Suivez-nous</h3>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="credit">Copyright @2025 by <span>Fast Food Restaurant</span></div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

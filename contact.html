@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Fast Food</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --green: #f46a06;
+            --black: #192a56;
+            --light-color: #666;
+            --box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+        }
+
+        * {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            outline: none;
+            border: none;
+            text-transform: capitalize;
+            transition: all .2s linear;
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f5f5;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 1rem 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        header .logo {
+            color: var(--black);
+            font-size: 2.5rem;
+            font-weight: bolder;
+        }
+
+        header .logo i {
+            color: var(--green);
+        }
+
+        header .back-btn {
+            color: var(--green);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #eee;
+        }
+
+        header .back-btn:hover {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--green) 0%, #ff8c42 100%);
+            padding: 8rem 7% 5rem;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            text-transform: none;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-section {
+            padding: 5rem 7%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            transition: transform .3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0,0,0,.15);
+        }
+
+        .info-card .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--green), #ff8c42);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-card .icon i {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .info-card .details h3 {
+            font-size: 2rem;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .info-card .details p,
+        .info-card .details a {
+            font-size: 1.5rem;
+            color: var(--light-color);
+            text-transform: none;
+            line-height: 1.8;
+        }
+
+        .info-card .details a:hover {
+            color: var(--green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--black);
+        }
+
+        .social-links a:hover {
+            background: var(--green);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 4rem;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-form h2 {
+            font-size: 3rem;
+            color: var(--black);
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            background: #f9f9f9;
+            color: var(--black);
+            text-transform: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--green);
+            background: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--green);
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--black);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,.2);
+        }
+
+        .hours-section {
+            padding: 5rem 7%;
+            background: #fff;
+        }
+
+        .hours-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hours-container h2 {
+            font-size: 3.5rem;
+            color: var(--black);
+            margin-bottom: 3rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hours-card {
+            background: #f9f9f9;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--green);
+        }
+
+        .hours-card h3 {
+            font-size: 2rem;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .hours-card p {
+            font-size: 1.6rem;
+            color: var(--light-color);
+            text-transform: none;
+        }
+
+        @media (max-width: 991px) {
+            html {
+                font-size: 55%;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .contact-form {
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><i class="fas fa-utensils"></i> Fast Food</a>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Retour</span>
+        </a>
+    </header>
+
+    <section class="hero">
+        <h1>Contactez-Nous</h1>
+        <p>Nous sommes là pour répondre à toutes vos questions. N'hésitez pas à nous contacter !</p>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="details">
+                        <h3>Notre Adresse</h3>
+                        <p>123 Avenue des Restaurants<br>Plateau, Abidjan<br>Côte d'Ivoire</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="details">
+                        <h3>Téléphone</h3>
+                        <p><a href="tel:+2250123456789">+225 01 23 45 67 89</a></p>
+                        <p><a href="tel:+2250987654321">+225 09 87 65 43 21</a></p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:contact@fastfood.ci">contact@fastfood.ci</a></p>
+                        <p><a href="mailto:commande@fastfood.ci">commande@fastfood.ci</a></p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="details">
+                        <h3>Suivez-Nous</h3>
+                        <p>Restez connectés avec nous sur les réseaux sociaux</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Envoyez-nous un message</h2>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nom">Nom complet</label>
+                            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone" required placeholder="+225 XX XX XX XX XX">
+                        </div>
+                        <div class="form-group">
+                            <label for="sujet">Sujet</label>
+                            <select id="sujet" name="sujet" required>
+                                <option value="">Sélectionner un sujet</option>
+                                <option value="commande">Commande</option>
+                                <option value="reservation">Réservation</option>
+                                <option value="reclamation">Réclamation</option>
+                                <option value="suggestion">Suggestion</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Écrivez votre message ici..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Envoyer le message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="hours-section">
+        <div class="hours-container">
+            <h2>Horaires d'Ouverture</h2>
+            <div class="hours-grid">
+                <div class="hours-card">
+                    <h3>Lundi - Vendredi</h3>
+                    <p>10:00 - 23:00</p>
+                </div>
+                <div class="hours-card">
+                    <h3>Samedi</h3>
+                    <p>09:00 - 00:00</p>
+                </div>
+                <div class="hours-card">
+                    <h3>Dimanche</h3>
+                    <p>09:00 - 23:00</p>
+                </div>
+                <div class="hours-card">
+                    <h3>Jours Fériés</h3>
+                    <p>Horaires spéciaux</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const telephone = document.getElementById('telephone').value;
+            const sujet = document.getElementById('sujet').value;
+            const message = document.getElementById('message').value;
+
+            if (nom && email && telephone && sujet && message) {
+                alert('✅ Merci ' + nom + ' ! Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.');
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>
