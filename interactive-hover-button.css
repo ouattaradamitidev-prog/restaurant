@@ -1,0 +1,81 @@
+/* ==================== BOUTON "INTERACTIVE HOVER" ====================
+   Reproduction en CSS pur du composant InteractiveHoverButton :
+   au survol, le point orange grandit et remplit le bouton, le texte glisse
+   vers la droite et un second texte avec une flèche arrive par la gauche.
+   Utilisation :
+   <a class="ihb"> ou <button class="ihb">
+     <span class="ihb__label">Texte</span>
+     <span class="ihb__over" aria-hidden="true"><span>Texte</span> (flèche SVG)</span>
+     <span class="ihb__dot" aria-hidden="true"></span>
+   </a>
+   Variantes : .ihb--block (pleine largeur), .ihb--lg (plus grand), .ihb--mt (marge haute). */
+
+.ihb{
+    --ihb-primary:#c2410c;          /* contraste 5,2:1 avec le texte blanc */
+    --ihb-fg:var(--black,#192a56);
+    --ihb-bg:#fff;
+    --ihb-border:#b8b8c0;
+    position:relative;
+    display:inline-block;
+    min-width:12.8rem;
+    padding:.8rem 2.4rem;
+    overflow:hidden;
+    border:1px solid var(--ihb-border);
+    border-radius:9999px;
+    background:var(--ihb-bg);
+    color:var(--ihb-fg);
+    font-family:inherit;
+    font-size:1.6rem;
+    font-weight:600;
+    line-height:1.5;
+    text-align:center;
+    text-transform:none;
+    letter-spacing:0;
+    white-space:nowrap;
+    cursor:pointer;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+.ihb:focus-visible{outline:3px solid var(--ihb-primary);outline-offset:3px}
+
+.ihb .ihb__label{
+    display:inline-block;
+    transform:translateX(.4rem);
+    transition:transform .3s ease,opacity .3s ease;
+}
+.ihb .ihb__over{
+    position:absolute;top:0;left:0;z-index:10;
+    display:flex;align-items:center;justify-content:center;gap:.8rem;
+    width:100%;height:100%;
+    color:#fff;opacity:0;
+    transform:translateX(4.8rem);
+    transition:transform .3s ease,opacity .3s ease;
+}
+.ihb .ihb__arrow{flex:none;width:2rem;height:2rem}
+.ihb .ihb__dot{
+    position:absolute;left:1.2rem;top:40%;
+    width:.8rem;height:.8rem;
+    border-radius:.8rem;
+    background:var(--ihb-primary);
+    transform:scale(1);
+    transition:left .3s ease,top .3s ease,width .3s ease,height .3s ease,transform .3s ease;
+}
+
+/* Survol et focus clavier */
+.ihb:is(:hover,:focus-visible):not(:disabled) .ihb__label{transform:translateX(4.8rem);opacity:0}
+.ihb:is(:hover,:focus-visible):not(:disabled) .ihb__over{transform:translateX(-.4rem);opacity:1}
+.ihb:is(:hover,:focus-visible):not(:disabled) .ihb__dot{left:0;top:0;width:100%;height:100%;transform:scale(1.8)}
+
+/* États */
+.ihb:active:not(:disabled){transform:translateY(1px)}
+.ihb:disabled{cursor:default;opacity:.7}
+.ihb[aria-pressed="true"]{border-color:var(--ihb-primary);color:var(--ihb-primary)}
+
+/* Variantes */
+.ihb--block{display:block;width:100%}
+.ihb--lg{padding:1.2rem 2.4rem;font-size:1.8rem}
+.ihb--mt{margin-top:1rem}
+
+@media (prefers-reduced-motion:reduce){
+    .ihb .ihb__label,.ihb .ihb__over,.ihb .ihb__dot{transition:none}
+}

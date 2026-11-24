@@ -5,37 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fast Food Restaurant</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="interactive-hover-button.css">
+    <link rel="stylesheet" href="wordmark-footer.css">
+    <link rel="stylesheet" href="liquid-nav.css">
+    <link rel="stylesheet" href="scroll-reveal.css">
 </head>
 <body>
 
-    <!--------- HEADER ---------->
-    <header>
-        <a href="#home" class="logo"><i class="fas fa-utensils"></i> Fast Food</a>
 
-        <nav class="navbar">
-            <a href="#home" class="active">Accueil</a>
-            <a href="#dishes">Plats</a>
-            <a href="#about">À propos</a>
-            <a href="#menu">Menu</a>
-            <a href="#review">Critiques</a>
-            <a href="#order">Commander</a>
+    <!--------- BARRE DE NAVIGATION : logo (gauche), navigation liquide (centre), boutons (droite) ---------->
+    <div class="nimbus-bar" id="nimbus-bar">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+            <filter id="nimbus-refract" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="2" seed="7" result="noise"/>
+                <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+                <feDisplacementMap in="SourceGraphic" in2="soft" scale="60" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+        </svg>
+
+        <div class="nimbus-nav nimbus-static nimbus-side-left" data-tone="light">
+            <a class="nimbus-act nimbus-brand" href="#home" title="Fast Food, accueil"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6.5a2.5 2.5 0 0 0 5 0V3"/><path d="M8.5 3v18"/><path d="M17 21V3c-2.2 1.6-3 4.2-3 7v3h3"/></svg></span><span class="nimbus-label">Fast Food</span></a>
+        </div>
+
+        <nav class="nimbus-nav" id="liquid-nav" data-tone="light" aria-label="Navigation principale">
+            <a class="nimbus-item" href="#home" title="Accueil" data-fx="glow" aria-current="location"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.2 12 4l8.5 7.2"/><path d="M6 9.6V20h12V9.6"/><path class="nv-door" d="M10 20v-5h4v5Z"/></svg></span><span class="nimbus-label">Accueil</span></a>
+            <a class="nimbus-item" href="#dishes" title="Plats" data-fx="spin"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/></svg></span><span class="nimbus-label">Plats</span></a>
+            <a class="nimbus-item" href="#about" title="À propos" data-fx="pop"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.2"/><path d="M12 7.8h.01"/></svg></span><span class="nimbus-label">À propos</span></a>
+            <a class="nimbus-item" href="#menu" title="Menu" data-fx="wave"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.3 5.2 8 4.6 4 4.6V18c4 0 6.3.6 8 1.9 1.7-1.3 4-1.9 8-1.9V4.6c-4 0-6.3.6-8 1.9Z"/><path d="M12 6.5v13.4"/></svg></span><span class="nimbus-label">Menu</span></a>
+            <a class="nimbus-item" href="#review" title="Critiques" data-fx="pop"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.8 2.5 5.2 5.7.8-4.1 4 1 5.7L12 16.8 6.9 19.5l1-5.7-4.1-4 5.7-.8L12 3.8Z"/></svg></span><span class="nimbus-label">Critiques</span></a>
+            <a class="nimbus-item" href="#order" title="Commander" data-fx="drop"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1 12h-11l-1-12Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span><span class="nimbus-label">Commander</span></a>
         </nav>
 
-        <div class="icons">
-            <i class="fas fa-bars" id="menu-bars"></i>
-            <i class="fas fa-search" id="search-icon"></i>
-            <a href="#" class="fas fa-heart" title="Favoris">
-                <span class="fav-badge" id="favCount">0</span>
-            </a>
-            <a href="panier.html" class="fas fa-shopping-cart" title="Panier">
-                <span class="cart-badge" id="cartCount">0</span>
-            </a>
-            <!-- <a href="contact.html" class="fas fa-user" title="Mon Profil" id="profileIcon"></a> -->
+        <div class="nimbus-nav nimbus-static nimbus-side-right" data-tone="light" role="group" aria-label="Recherche, favoris et panier">
+            <button class="nimbus-act" id="search-icon" type="button" title="Rechercher" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></button>
+            <a class="nimbus-act" href="#" title="Favoris" aria-label="Favoris"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20Z"/></svg><span class="fav-badge" id="favCount">0</span></a>
+            <a class="nimbus-act" href="panier.html" title="Panier" aria-label="Panier"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.5" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/><path d="M3 4h2.4l2.2 10.2h10l1.8-7.4H6.3"/></svg><span class="cart-badge" id="cartCount">0</span></a>
         </div>
-    </header>
+    </div>
 
     <!--------- RECHERCHE ---------->
     <form action="" id="search-form">
@@ -45,154 +56,161 @@
     </form>
 
     <!--------- ACCUEIL ---------->
-    <section class="home" id="home">
-        <div class="swiper home-slider">
-            <div class="swiper-wrapper wrapper">
-                <div class="swiper-slide slide">
-                    <div class="content">
-                        <span>notre plat spécial</span>
-                        <h3>frites au poulet</h3>
-                        <p>Découvrez nos frites croustillantes accompagnées de poulet tendre et savoureux, un régal pour vos papilles !</p>
-                        <a href="#menu" class="btn">commander maintenant</a>
-                    </div>
-                    <div class="image">
-                        <img src="./IMAGE/img1.png" alt="Frites au poulet">
+    <section class="home h41" id="home" aria-labelledby="hero-title" data-h41>
+        <div class="h41-wrap">
+            <div class="h41-top">
+                <div class="h41-copy">
+                    <h1 id="hero-title">Savourez le goût de la perfection</h1>
+                    <p>Bienvenue dans un restaurant où la passion rencontre l'assiette. Des entrées grillées aux desserts signature, chaque plat est préparé pour ravir vos sens.</p>
+                    <div class="h41-actions">
+                        <a href="#menu" class="ihb"><span class="ihb__label">Commander</span><span class="ihb__over" aria-hidden="true"><span>Commander</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></a>
+                        <a href="contact.html" class="ihb"><span class="ihb__label">Nous contacter</span><span class="ihb__over" aria-hidden="true"><span>Nous contacter</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></a>
                     </div>
                 </div>
 
-                <div class="swiper-slide slide">
-                    <div class="content">
-                        <span>notre plat spécial</span>
-                        <h3>plat sain</h3>
-                        <p>Des plats équilibrés et délicieux pour votre bien-être quotidien, préparés avec des ingrédients frais.</p>
-                        <a href="#menu" class="btn">commander maintenant</a>
-                    </div>
-                    <div class="image">
-                        <img src="./IMAGE/img6.png" alt="Plat sain">
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <div class="content">
-                        <span>notre plat spécial</span>
-                        <h3>burger deluxe</h3>
-                        <p>Le meilleur burger de la ville avec des ingrédients frais et de qualité supérieure.</p>
-                        <a href="#menu" class="btn">commander maintenant</a>
-                    </div>
-                    <div class="image">
-                        <img src="./IMAGE/img5.png" alt="Burger">
-                    </div>
+                <div class="h41-carousel h41-main" data-h41-c role="region" aria-roledescription="carrousel" aria-label="Nos plats" tabindex="0">
+                    <div class="h41-viewport"><div class="h41-track">
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="1 sur 5">
+                            <img src="https://cdn.21st.dev/assets/mirror/87/87f3508fd9ddd1feec9e242a33cebd948fa846554482db5c230c8e01412815d1.png" alt="Plat 1" width="380" height="380" fetchpriority="high" decoding="async" referrerpolicy="no-referrer">
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="2 sur 5">
+                            <img src="https://cdn.21st.dev/assets/mirror/1a/1a7fd7d61f2ff0fef5d573855fefc5909e9ebe6b573dbccc801facec0ef49377.png" alt="Plat 2" width="380" height="380" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="3 sur 5">
+                            <img src="https://cdn.21st.dev/assets/mirror/4b/4b782394554d00d1d840fa90b2d2a37fbfee34c07800652a5ac718dc32205bc3.png" alt="Plat 3" width="380" height="380" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="4 sur 5">
+                            <img src="https://cdn.21st.dev/assets/mirror/06/0649f8730b8b1afaa6854343ac026050ddd78538b612569d44151c0f804df506.png" alt="Plat 4" width="380" height="380" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="5 sur 5">
+                            <img src="https://cdn.21st.dev/assets/mirror/4b/4b782394554d00d1d840fa90b2d2a37fbfee34c07800652a5ac718dc32205bc3.png" alt="Plat 5" width="380" height="380" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                        </div>
+                    </div></div>
                 </div>
             </div>
-            <div class="swiper-pagination"></div>
+
+            <div class="h41-bottom">
+                <div class="h41-carousel h41-thumbs" data-h41-c role="region" aria-roledescription="carrousel" aria-label="Choisir un plat">
+                    <div class="h41-fade h41-fade--l" aria-hidden="true"></div>
+                    <div class="h41-fade h41-fade--r" aria-hidden="true"></div>
+                    <div class="h41-viewport"><div class="h41-track">
+                        <div class="h41-item">
+                            <button type="button" class="h41-thumb" aria-label="Afficher le plat 1" aria-current="true">
+                                <svg class="h41-arch" xmlns="http://www.w3.org/2000/svg" width="161" height="92" viewBox="0 0 161 92" fill="none" aria-hidden="true" focusable="false"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg>
+                                <img src="https://cdn.21st.dev/assets/mirror/87/87f3508fd9ddd1feec9e242a33cebd948fa846554482db5c230c8e01412815d1.png" alt="" width="100" height="100" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                            </button>
+                        </div>
+                        <div class="h41-item">
+                            <button type="button" class="h41-thumb" aria-label="Afficher le plat 2">
+                                <svg class="h41-arch" xmlns="http://www.w3.org/2000/svg" width="161" height="92" viewBox="0 0 161 92" fill="none" aria-hidden="true" focusable="false"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg>
+                                <img src="https://cdn.21st.dev/assets/mirror/1a/1a7fd7d61f2ff0fef5d573855fefc5909e9ebe6b573dbccc801facec0ef49377.png" alt="" width="100" height="100" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                            </button>
+                        </div>
+                        <div class="h41-item">
+                            <button type="button" class="h41-thumb" aria-label="Afficher le plat 3">
+                                <svg class="h41-arch" xmlns="http://www.w3.org/2000/svg" width="161" height="92" viewBox="0 0 161 92" fill="none" aria-hidden="true" focusable="false"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg>
+                                <img src="https://cdn.21st.dev/assets/mirror/4b/4b782394554d00d1d840fa90b2d2a37fbfee34c07800652a5ac718dc32205bc3.png" alt="" width="100" height="100" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                            </button>
+                        </div>
+                        <div class="h41-item">
+                            <button type="button" class="h41-thumb" aria-label="Afficher le plat 4">
+                                <svg class="h41-arch" xmlns="http://www.w3.org/2000/svg" width="161" height="92" viewBox="0 0 161 92" fill="none" aria-hidden="true" focusable="false"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg>
+                                <img src="https://cdn.21st.dev/assets/mirror/06/0649f8730b8b1afaa6854343ac026050ddd78538b612569d44151c0f804df506.png" alt="" width="100" height="100" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                            </button>
+                        </div>
+                        <div class="h41-item">
+                            <button type="button" class="h41-thumb" aria-label="Afficher le plat 5">
+                                <svg class="h41-arch" xmlns="http://www.w3.org/2000/svg" width="161" height="92" viewBox="0 0 161 92" fill="none" aria-hidden="true" focusable="false"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg>
+                                <img src="https://cdn.21st.dev/assets/mirror/4b/4b782394554d00d1d840fa90b2d2a37fbfee34c07800652a5ac718dc32205bc3.png" alt="" width="100" height="100" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                            </button>
+                        </div>
+                    </div></div>
+                </div>
+
+                <!-- TEXTES D'EXEMPLE : à remplacer par de vrais avis de clients avant la mise en ligne -->
+                <div class="h41-carousel h41-comments" data-h41-c role="region" aria-roledescription="carrousel" aria-label="Avis des clients">
+                    <div class="h41-viewport"><div class="h41-track">
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="1 sur 5">
+                            <div class="h41-comment">
+                                <img class="h41-avatar" src="https://cdn.21st.dev/assets/mirror/70/7085c77a7a6d158a70c96de353e7ff0f4965826fda66a1a15bfb117adbab23a5.png" alt="" width="40" height="40" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <span class="h41-sep" aria-hidden="true"></span>
+                                <p>L'ambiance est parfaite et la cuisine absolument délicieuse. Je recommande vivement !</p>
+                            </div>
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="2 sur 5">
+                            <div class="h41-comment">
+                                <img class="h41-avatar" src="https://cdn.21st.dev/assets/mirror/52/52a6fca15c519f45a65d5b547ce8104ffa0bc6149b496a6829da78e9a514e5ab.png" alt="" width="40" height="40" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <span class="h41-sep" aria-hidden="true"></span>
+                                <p>La meilleure expérience de restaurant de la ville. Le personnel est aimable et le menu exceptionnel.</p>
+                            </div>
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="3 sur 5">
+                            <div class="h41-comment">
+                                <img class="h41-avatar" src="https://cdn.21st.dev/assets/mirror/49/4973a15208f8b3280f0dac82f61e010823b3ccd54e729b5370ca97422ceb083c.png" alt="" width="40" height="40" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <span class="h41-sep" aria-hidden="true"></span>
+                                <p>Chaque plat est préparé avec soin. Cet endroit ne déçoit jamais !</p>
+                            </div>
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="4 sur 5">
+                            <div class="h41-comment">
+                                <img class="h41-avatar" src="https://cdn.21st.dev/assets/mirror/94/9451db1a91eab519563106259e9ec936bb7169c24f38485461894f6be2ef1368.png" alt="" width="40" height="40" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <span class="h41-sep" aria-hidden="true"></span>
+                                <p>Super ambiance et saveurs incroyables. Un restaurant à ne pas manquer !</p>
+                            </div>
+                        </div>
+                        <div class="h41-item" role="group" aria-roledescription="diapositive" aria-label="5 sur 5">
+                            <div class="h41-comment">
+                                <img class="h41-avatar" src="https://cdn.21st.dev/assets/mirror/49/4973a15208f8b3280f0dac82f61e010823b3ccd54e729b5370ca97422ceb083c.png" alt="" width="40" height="40" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <span class="h41-sep" aria-hidden="true"></span>
+                                <p>Chaque plat est préparé avec soin. Cet endroit ne déçoit jamais !</p>
+                            </div>
+                        </div>
+                    </div></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!--------- PLATS ---------->
-    <section class="dishes" id="dishes">
-        <h3 class="sub-heading">Nos plats</h3>
-        <h1 class="heading">Plats populaires</h1>
+    <section class="dishes orbit-menu" id="dishes">
+        <div class="orbit-intro">
+            <span class="orbit-kicker">LA SÉLECTION DU CHEF</span>
+            <h2>Des saveurs qui donnent envie</h2>
+            <p>Explorez nos incontournables, préparés avec soin et servis généreusement.</p>
+        </div>
+        <div class="dsh-trk" data-dsh-track>
+            <div class="dsh-root" data-dsh role="region" aria-roledescription="carrousel" aria-label="La sélection du chef" tabindex="0">
+                <div class="dsh-canvas">
+                    <svg class="dsh-arc" viewBox="0 0 960 520" aria-hidden="true"><path data-dsh-arc style="opacity:.34"/></svg>
 
-        <div class="box-container">
-            <div class="box" data-name="Burger Deluxe" data-price="3500">
-                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Burger Deluxe')"></a>
-                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Burger Deluxe')"></a>
-                <img src="./IMAGE/img2.png" alt="Burger">
-                <h3>Burger Deluxe</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <span>3,500 FCFA</span>
-                <a href="javascript:void(0)" class="btn" onclick="addToCart('Burger Deluxe', 3500)">ajouter au panier</a>
-            </div>
+                    <div class="dsh-pager" role="tablist" aria-label="Choisir un plat" data-dsh-pager></div>
+                    <div class="dsh-plates" data-dsh-plates></div>
+                    <div class="dsh-head" aria-live="polite" data-dsh-heads></div>
 
-            <div class="box" data-name="Pizza Margherita" data-price="5000">
-                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Pizza Margherita')"></a>
-                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Pizza Margherita')"></a>
-                <img src="./IMAGE/plat2.png" alt="Pizza">
-                <h3>Pizza Margherita</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <span>5,000 FCFA</span>
-                <a href="javascript:void(0)" class="btn" onclick="addToCart('Pizza Margherita', 5000)">ajouter au panier</a>
-            </div>
+                    <div class="dsh-acts">
+                        <button type="button" class="ihb" data-dsh-add><span class="ihb__label">Ajouter au panier</span><span class="ihb__over" aria-hidden="true"><span>Ajouter au panier</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></button>
+                        <button type="button" class="ihb" data-dsh-fav aria-pressed="false"><span class="ihb__label">Favoris</span><span class="ihb__over" aria-hidden="true"><span>Favoris</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></button>
+                    </div>
 
-            <div class="box" data-name="Frites Croustillantes" data-price="1500">
-                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Frites Croustillantes')"></a>
-                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Frites Croustillantes')"></a>
-                <img src="./IMAGE/PLAT3.png" alt="Frites">
-                <h3>Frites Croustillantes</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <span>1,500 FCFA</span>
-                <a href="javascript:void(0)" class="btn" onclick="addToCart('Frites Croustillantes', 1500)">ajouter au panier</a>
-            </div>
+                    <div class="dsh-card">
+                        <div class="dsh-tabs" role="tablist" aria-label="Détails du plat">
+                            <button type="button" role="tab" class="dsh-btn dsh-tab" data-dsh-tab="overview" aria-selected="true">Aperçu</button>
+                            <button type="button" role="tab" class="dsh-btn dsh-tab" data-dsh-tab="ingredients" aria-selected="false">Ingrédients</button>
+                        </div>
+                        <div class="dsh-bodies" data-dsh-bodies></div>
+                    </div>
 
-            <div class="box" data-name="Poulet Grillé" data-price="4500">
-                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Poulet Grillé')"></a>
-                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Poulet Grillé')"></a>
-                <img src="./IMAGE/IJJ.png" alt="Poulet">
-                <h3>Poulet Grillé</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                    <div class="dsh-strip">
+                        <button type="button" class="dsh-btn dsh-arrow" data-dsh-prev aria-label="Plat précédent"><svg viewBox="0 0 12 16" aria-hidden="true"><path d="M11 0v16L0 8z"/></svg></button>
+                        <div class="dsh-win"><div class="dsh-track" data-dsh-strip-track></div></div>
+                        <button type="button" class="dsh-btn dsh-arrow" data-dsh-next aria-label="Plat suivant"><svg viewBox="0 0 12 16" aria-hidden="true"><path d="M1 0v16l11-8z"/></svg></button>
+                    </div>
                 </div>
-                <span>4,500 FCFA</span>
-                <a href="javascript:void(0)" class="btn" onclick="addToCart('Poulet Grillé', 4500)">ajouter au panier</a>
-            </div>
-
-            <div class="box" data-name="Tacos Mexicain" data-price="3000">
-                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Tacos Mexicain')"></a>
-                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Tacos Mexicain')"></a>
-                <img src="./IMAGE/img4.png" alt="Tacos">
-                <h3>Tacos Mexicain</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <span>3,000 FCFA</span>
-                <a href="javascript:void(0)" class="btn" onclick="addToCart('Tacos Mexicain', 3000)">ajouter au panier</a>
-            </div>
-
-            <div class="box" data-name="Salade César" data-price="2500">
-                <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Salade César')"></a>
-                <a href="javascript:void(0)" class="fas fa-eye" onclick="viewDetails('Salade César')"></a>
-                <img src="./IMAGE/BURGER2.png" alt="Salade">
-                <h3>Salade César</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <span>2,500 FCFA</span>
-                <a href="javascript:void(0)" class="btn" onclick="addToCart('Salade César', 2500)">ajouter au panier</a>
+                <p class="dsh-sr" aria-live="polite" data-dsh-live></p>
             </div>
         </div>
     </section>
 
-    <!--------- À PROPOS ---------->
     <section class="about" id="about">
         <h3 class="sub-heading">À propos de nous</h3>
         <h1 class="heading">Pourquoi nous choisir ?</h1>
@@ -220,264 +238,275 @@
                         <span>service 24/7</span>
                     </div>
                 </div>
-                <a href="contact.html" class="btn">Nous contacter</a>
+                <a href="contact.html" class="ihb ihb--mt"><span class="ihb__label">Nous contacter</span><span class="ihb__over" aria-hidden="true"><span>Nous contacter</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></a>
             </div>
         </div>
     </section>
 
     <!--------- MENU ---------->
-    <section class="menu" id="menu">
+    <section class="menu conveyor-menu" id="menu">
         <h3 class="sub-heading">notre menu</h3>
         <h1 class="heading">Spécialité du jour</h1>
 
-        <div class="box-container">
-            <div class="box" data-name="Wrap Poulet" data-price="3200">
-                <div class="image">
-                    <img src="./IMAGE/c5.jpg" alt="Wrap">
-                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Wrap Poulet')"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+        <div class="belt" data-belt>
+            <ul class="belt-legend" data-belt-legend aria-hidden="true"></ul>
+            <div class="belt-stage" data-belt-stage role="group" aria-label="Tapis roulant des plats du jour" aria-roledescription="tapis roulant">
+                <svg class="belt-svg" data-belt-svg aria-hidden="true" focusable="false"></svg>
+            </div>
+            <div class="belt-controls">
+                <button type="button" data-belt-prev aria-label="Plat précédent"><i class="fas fa-chevron-left"></i></button>
+                <button type="button" data-belt-pause aria-label="Mettre le tapis en pause" aria-pressed="false"><i class="fas fa-pause"></i></button>
+                <button type="button" data-belt-next aria-label="Plat suivant"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="belt-caption" data-belt-caption aria-live="polite">Passez la souris sur une assiette pour arrêter le tapis, glissez pour le faire tourner, cliquez pour commander.</div>
+        </div>
+
+        <dialog class="belt-dialog" data-belt-dialog aria-labelledby="beltDialogTitle">
+            <button type="button" class="belt-close" data-belt-close aria-label="Fermer"><i class="fas fa-times"></i></button>
+            <div class="belt-dialog-body">
+                <div class="belt-figure"><img data-dialog-image alt=""></div>
+                <div class="belt-info">
+                    <p class="belt-index" data-dialog-index></p>
+                    <h3 id="beltDialogTitle" data-dialog-title></h3>
+                    <p class="belt-desc" data-dialog-desc></p>
+                    <p class="belt-price" data-dialog-price></p>
+                    <div class="belt-actions">
+                        <button type="button" class="ihb" data-dialog-add><span class="ihb__label">Ajouter au panier</span><span class="ihb__over" aria-hidden="true"><span>Ajouter au panier</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></button>
+                        <button type="button" class="belt-fav" data-dialog-fav aria-label="Ajouter aux favoris" aria-pressed="false"><i class="fas fa-heart"></i></button>
                     </div>
-                    <h3>Wrap Poulet</h3>
-                    <p>Wrap garni de poulet grillé, légumes frais et sauce spéciale</p>
-                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Wrap Poulet', 3200)">ajouter</a>
-                    <span class="pice">3,200 FCFA</span>
                 </div>
             </div>
+        </dialog>
+    </section>
 
-            <div class="box" data-name="Nuggets Box" data-price="2800">
-                <div class="image">
-                    <img src="./IMAGE/c7.jpg" alt="Nuggets">
-                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Nuggets Box')"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Nuggets Box</h3>
-                    <p>10 nuggets croustillants avec sauce au choix</p>
-                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Nuggets Box', 2800)">ajouter</a>
-                    <span class="pice">2,800 FCFA</span>
-                </div>
+    <!--------- TÉMOIGNAGES ---------->
+    <!-- TEXTES D'EXEMPLE : à remplacer par de vrais avis de clients (et leurs vrais noms) avant la mise en ligne -->
+    <section class="critique tm" id="review" aria-labelledby="tm-title">
+        <h3 class="sub-heading">Avis du client</h3>
+        <h1 class="heading" id="tm-title">Ce qu'ils disent</h1>
+
+        <div class="tm-wrap" data-tm>
+            <div class="tm-quote">
+                <span class="tm-mark tm-mark--open" aria-hidden="true">&ldquo;</span>
+                <p class="tm-text" data-tm-text aria-live="polite">Un service impeccable et des plats délicieux ! Je recommande vivement ce restaurant à tous mes amis.</p>
+                <span class="tm-mark tm-mark--close" aria-hidden="true">&rdquo;</span>
             </div>
 
-            <div class="box" data-name="Hot Dog Premium" data-price="2200">
-                <div class="image">
-                    <img src="./IMAGE/c8.jpg" alt="Hot Dog">
-                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Hot Dog Premium')"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>Hot Dog Premium</h3>
-                    <p>Saucisse de qualité avec garniture complète</p>
-                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Hot Dog Premium', 2200)">ajouter</a>
-                    <span class="pice">2,200 FCFA</span>
-                </div>
-            </div>
-
-            <div class="box" data-name="Sandwich Club" data-price="3500">
-                <div class="image">
-                    <img src="./IMAGE/p3.jpg" alt="Sandwich">
-                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Sandwich Club')"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Sandwich Club</h3>
-                    <p>Triple sandwich avec poulet, bacon et œuf</p>
-                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Sandwich Club', 3500)">ajouter</a>
-                    <span class="pice">3,500 FCFA</span>
-                </div>
-            </div>
-
-            <div class="box" data-name="Pasta Carbonara" data-price="4000">
-                <div class="image">
-                    <img src="./IMAGE/p5.jpg" alt="Pasta">
-                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Pasta Carbonara')"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>Pasta Carbonara</h3>
-                    <p>Pâtes crémeuses avec lardons et parmesan</p>
-                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Pasta Carbonara', 4000)">ajouter</a>
-                    <span class="pice">4,000 FCFA</span>
-                </div>
-            </div>
-
-            <div class="box" data-name="Menu Enfant" data-price="2000">
-                <div class="image">
-                    <img src="./IMAGE/p6.jpg" alt="Menu Enfant">
-                    <a href="javascript:void(0)" class="fas fa-heart" onclick="addToFavorites('Menu Enfant')"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Menu Enfant</h3>
-                    <p>Nuggets, frites et boisson avec jouet surprise</p>
-                    <a href="javascript:void(0)" class="btn" onclick="addToCart('Menu Enfant', 2000)">ajouter</a>
-                    <span class="pice">2,000 FCFA</span>
+            <div class="tm-lower">
+                <p class="tm-role" data-tm-role>Avis client</p>
+                <div class="tm-chips" role="group" aria-label="Choisir un avis">
+                <button type="button" class="tm-chip" data-quote="Un service impeccable et des plats délicieux ! Je recommande vivement ce restaurant à tous mes amis." aria-current="true">
+                    <span class="tm-avatar" aria-hidden="true">MK</span>
+                    <span class="tm-name"><span>Marie Kouassi</span></span>
+                </button>
+                <button type="button" class="tm-chip" data-quote="Meilleur restaurant de la ville, je recommande vivement. La qualité est toujours au rendez-vous.">
+                    <span class="tm-avatar" aria-hidden="true">JK</span>
+                    <span class="tm-name"><span>Jean Koffi</span></span>
+                </button>
+                <button type="button" class="tm-chip" data-quote="Ambiance chaleureuse et cuisine raffinée. Un vrai régal à chaque visite !">
+                    <span class="tm-avatar" aria-hidden="true">AY</span>
+                    <span class="tm-name"><span>Ama Yao</span></span>
+                </button>
+                <button type="button" class="tm-chip" data-quote="Livraison rapide et plats toujours chauds. Le service client est excellent !">
+                    <span class="tm-avatar" aria-hidden="true">KA</span>
+                    <span class="tm-name"><span>Konan Assi</span></span>
+                </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--------- CRITIQUES ---------->
-    <section class="critique" id="review">
-        <h3 class="sub-heading">Avis du client</h3>
-        <h1 class="heading">Ce qu'ils disent</h1>
-        <div class="swiper critique-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <p>"Un service impeccable et des plats délicieux ! Je recommande vivement ce restaurant à tous mes amis."</p>
-                    <h3>- Marie Kouassi</h3>
-                </div>
-                <div class="swiper-slide">
-                    <p>"Meilleur restaurant de la ville, je recommande vivement. La qualité est toujours au rendez-vous."</p>
-                    <h3>- Jean Koffi</h3>
-                </div>
-                <div class="swiper-slide">
-                    <p>"Ambiance chaleureuse et cuisine raffinée. Un vrai régal à chaque visite !"</p>
-                    <h3>- Ama Yao</h3>
-                </div>
-                <div class="swiper-slide">
-                    <p>"Livraison rapide et plats toujours chauds. Le service client est excellent !"</p>
-                    <h3>- Konan Assi</h3>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
+    <!--------- APPEL À COMMANDER ---------->
+    <section class="float-cta" id="float-cta" aria-labelledby="float-cta-title">
+        <svg class="float-cta-swirl float-cta-swirl--a" width="600" height="600" viewBox="0 0 600 600" fill="none" aria-hidden="true" focusable="false">
+            <path d="M515.266 181.33C377.943 51.564 128.537 136.256 50.8123 293.565C-26.9127 450.874 125.728 600 125.728 600" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="float-cta-swirl float-cta-swirl--b" width="700" height="700" viewBox="0 0 700 700" fill="none" aria-hidden="true" focusable="false">
+            <path d="M26.8838 528.274C193.934 689.816 480.051 637.218 594.397 451.983C708.742 266.748 543.953 2.22235 543.953 2.22235" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+        <img class="float-cta-img float-cta-img--burger" src="https://cdn.21st.dev/assets/mirror/cc/cc7d7fbb538d93322e189b55ae4c6eed95aab7da267a9a095b39216070ef65b0.png" alt="Cheeseburger" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <img class="float-cta-img float-cta-img--dumplings" src="https://cdn.21st.dev/assets/mirror/95/95bc0d9d69e76d3729ca42f9525bafd449fd27fa41c9393d1deccb85d79b0639.png" alt="Panier vapeur de raviolis" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <img class="float-cta-img float-cta-img--pizza" src="https://cdn.21st.dev/assets/mirror/6e/6e4600ac05444d9dc0396906da4174dcfe42a64c14082d939f0f57cb2ed8113d.png" alt="Part de pizza" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <img class="float-cta-img float-cta-img--basil" src="https://cdn.21st.dev/assets/mirror/8e/8ec4fbab8445c1769d3200d674cd3731a0550b21c87bb8bc6938cb3a05932e5b.png" alt="Feuille de basilic" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <img class="float-cta-img float-cta-img--tomato-a" src="https://cdn.21st.dev/assets/mirror/e7/e758e9c35a8360f201c40d0bf3e3433c2b6ff3f759763eb697cbc3803af80e18.png" alt="Tranche de tomate" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <img class="float-cta-img float-cta-img--tomato-b" src="https://cdn.21st.dev/assets/mirror/e7/e758e9c35a8360f201c40d0bf3e3433c2b6ff3f759763eb697cbc3803af80e18.png" alt="Tranche de tomate" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+
+        <div class="float-cta-content">
+            <h2 id="float-cta-title">Une envie ? Commandez en ligne</h2>
+            <p>Choisissez vos plats, indiquez votre adresse et recevez votre commande à Abidjan.</p>
+            <a href="#order" class="ihb ihb--lg float-cta-btn"><span class="ihb__label">Passer commande</span><span class="ihb__over" aria-hidden="true"><span>Passer commande</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></a>
         </div>
     </section>
 
     <!--------- COMMANDER ---------->
-    <section class="order" id="order">
-        <h3 class="sub-heading">Commandez maintenant</h3>
-        <h1 class="heading">Gratuit et rapide</h1>
-
-        <form id="orderForm">
-            <div class="inputBox">
-                <div class="input">
-                    <span>Votre Nom</span>
-                    <input type="text" name="name" placeholder="Entrez Votre Nom" required>
+    <section class="order" id="order" aria-labelledby="order-title">
+        <div class="of-wrap">
+            <h2 class="of-title" id="order-title">Commandez maintenant</h2>
+            <p class="of-sub">Indiquez votre plat, votre adresse et l'heure souhaitée. Les champs marqués d'un astérisque sont obligatoires.</p>
+            <form id="orderForm" class="of-form" action="#" method="post" novalidate>
+                <div class="of-grid">
+                    <div class="of-field of-span-3">
+                        <label class="of-label" for="of-name">Nom complet<span class="of-req" aria-hidden="true">*</span></label>
+                        <input class="of-input" id="of-name" type="text" name="name" placeholder="Prénom et nom" autocomplete="name" required aria-describedby="of-name-error">
+                        <p class="of-error" id="of-name-error"></p>
+                    </div>
+                    <div class="of-field of-span-3">
+                        <label class="of-label" for="of-phone">Téléphone<span class="of-req" aria-hidden="true">*</span></label>
+                        <input class="of-input" id="of-phone" type="tel" name="Number" placeholder="Ex. 07 00 00 00 00" autocomplete="tel" required inputmode="tel" aria-describedby="of-phone-error">
+                        <p class="of-error" id="of-phone-error"></p>
+                    </div>
+                    <div class="of-field of-span-4">
+                        <label class="of-label" for="of-food">Plat commandé<span class="of-req" aria-hidden="true">*</span></label>
+                        <input class="of-input" id="of-food" type="text" name="food name" placeholder="Nom du plat" required aria-describedby="of-food-error">
+                        <p class="of-error" id="of-food-error"></p>
+                    </div>
+                    <div class="of-field of-span-2">
+                        <label class="of-label" for="of-qty">Quantité<span class="of-req" aria-hidden="true">*</span></label>
+                        <input class="of-input" id="of-qty" type="number" name="order" placeholder="1" required min="1" max="50" inputmode="numeric" aria-describedby="of-qty-error">
+                        <p class="of-error" id="of-qty-error"></p>
+                    </div>
+                    <div class="of-field of-span-3">
+                        <label class="of-label" for="of-extra">Supplément</label>
+                        <input class="of-input" id="of-extra" type="text" name="extra with food" placeholder="Ex. sauce piquante" aria-describedby="of-extra-error">
+                        <p class="of-error" id="of-extra-error"></p>
+                    </div>
+                    <div class="of-field of-span-3">
+                        <label class="of-label" for="of-date">Date et heure souhaitées<span class="of-req" aria-hidden="true">*</span></label>
+                        <input class="of-input" id="of-date" type="datetime-local" name="date" placeholder="" required aria-describedby="of-date-error">
+                        <p class="of-error" id="of-date-error"></p>
+                    </div>
+                    <div class="of-field of-span-full">
+                        <label class="of-label" for="of-address">Adresse de livraison<span class="of-req" aria-hidden="true">*</span></label>
+                        <textarea class="of-input of-textarea" id="of-address" name="address" rows="3" placeholder="Quartier, rue, repère" autocomplete="street-address" required aria-describedby="of-address-error"></textarea>
+                        <p class="of-error" id="of-address-error"></p>
+                    </div>
+                    <div class="of-field of-span-full">
+                        <label class="of-label" for="of-message">Message</label>
+                        <textarea class="of-input of-textarea" id="of-message" name="message" rows="3" placeholder="Une précision pour la cuisine ou le livreur ?" aria-describedby="of-message-error"></textarea>
+                        <p class="of-error" id="of-message-error"></p>
+                    </div>
                 </div>
-                <div class="input">
-                    <span>Votre Numéro</span>
-                    <input type="tel" name="Number" placeholder="Entrez Votre numéro" required>
+                <!-- Anti-spam : champ piège invisible, laissé vide par les vrais visiteurs -->
+                <div class="of-hp" aria-hidden="true"><label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+                <hr class="of-sep">
+                <div class="of-actions">
+                    <button type="reset" class="of-btn of-btn--outline">Annuler</button>
+                    <button type="submit" class="of-btn of-btn--primary">Commander</button>
                 </div>
-            </div>
-
-            <div class="inputBox">
-                <div class="input">
-                    <span>Votre commande</span>
-                    <input type="text" name="food name" placeholder="Entrez le nom du plat" required>
-                </div>
-                <div class="input">
-                    <span>Supplémentaire</span>
-                    <input type="text" name="extra with food" placeholder="Supplément avec la nourriture">
-                </div>
-            </div>
-
-            <div class="inputBox">
-                <div class="input">
-                    <span>Combien</span>
-                    <input type="number" name="order" placeholder="Combien de commande ?" min="1" required>
-                </div>
-                <div class="input">
-                    <span>Date et heure</span>
-                    <input type="datetime-local" name="date" required>
-                </div>
-            </div>
-
-            <div class="inputBox">
-                <div class="input">
-                    <span>Votre adresse</span>
-                    <textarea name="address" placeholder="Entrez Votre adresse" cols="30" rows="10" required></textarea>
-                </div>
-                <div class="input">
-                    <span>Votre message</span>
-                    <textarea name="message" placeholder="Entrez Votre message" cols="30" rows="10"></textarea>
-                </div>
-            </div>
-
-            <input type="submit" value="Commander Maintenant" class="btn">
-        </form>
+            </form>
+        </div>
     </section>
 
     <!--------- FOOTER ---------->
-    <section class="footer">
-        <div class="box-container">
-            <div class="box">
-                <h3>Emplacements</h3>
-                <a href="contact.html">Plateau - Abidjan</a>
-                <a href="contact.html">Cocody - Abidjan</a>
-                <a href="contact.html">Marcory - Abidjan</a>
-                <a href="contact.html">Yopougon - Abidjan</a>
-                <a href="contact.html">Koumassi - Abidjan</a>
+    <footer class="wmf" id="footer">
+        <div class="wmf-top">
+            <div class="wmf-brand">
+                <span class="wmf-name">Fast Food</span>
+                <p class="wmf-desc">Choisissez vos plats, indiquez votre adresse et recevez votre commande à Abidjan.</p>
             </div>
-
-            <div class="box">
-                <h3>Liens rapides</h3>
-                <a href="#home">Accueil</a>
-                <a href="#dishes">Plats</a>
-                <a href="#menu">Menu</a>
-                <a href="#review">Critiques</a>
-                <a href="#about">À propos</a>
-                <a href="#order">Commande</a>
-            </div>
-
-            <div class="box">
-                <h3>Coordonnées</h3>
-                <a href="tel:+2250123456789">+225 01 23 45 67 89</a>
-                <a href="tel:+2250987654321">+225 09 87 65 43 21</a>
-                <a href="mailto:contact@fastfood.ci">contact@fastfood.ci</a>
-                <a href="mailto:commande@fastfood.ci">commande@fastfood.ci</a>
-                <a href="contact.html">Nous contacter</a>
-            </div>
-
-            <div class="box">
-                <h3>Suivez-nous</h3>
-                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </div>
+            <nav class="wmf-nav" aria-label="Pied de page">
+                    <div>
+                        <p class="wmf-label">Emplacements</p>
+                        <ul>
+                            <li><a href="contact.html">Plateau - Abidjan</a></li>
+                            <li><a href="contact.html">Cocody - Abidjan</a></li>
+                            <li><a href="contact.html">Marcory - Abidjan</a></li>
+                            <li><a href="contact.html">Yopougon - Abidjan</a></li>
+                            <li><a href="contact.html">Koumassi - Abidjan</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="wmf-label">Liens rapides</p>
+                        <ul>
+                            <li><a href="#home">Accueil</a></li>
+                            <li><a href="#dishes">Plats</a></li>
+                            <li><a href="#menu">Menu</a></li>
+                            <li><a href="#review">Critiques</a></li>
+                            <li><a href="#about">À propos</a></li>
+                            <li><a href="#order">Commande</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="wmf-label">Coordonnées</p>
+                        <ul>
+                            <li><a href="tel:+2250123456789">+225 01 23 45 67 89</a></li>
+                            <li><a href="tel:+2250987654321">+225 09 87 65 43 21</a></li>
+                            <li><a href="mailto:contact@fastfood.ci">contact@fastfood.ci</a></li>
+                            <li><a href="mailto:commande@fastfood.ci">commande@fastfood.ci</a></li>
+                            <li><a href="contact.html">Nous contacter</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="wmf-label">Suivez-nous</p>
+                        <ul>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">X (Twitter)</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                        </ul>
+                    </div>
+            </nav>
+            <nav class="wmf-fold" aria-label="Pied de page">
+                    <details>
+                        <summary><span class="wmf-label">Emplacements</span><svg class="wmf-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+                        <ul>
+                            <li><a href="contact.html">Plateau - Abidjan</a></li>
+                            <li><a href="contact.html">Cocody - Abidjan</a></li>
+                            <li><a href="contact.html">Marcory - Abidjan</a></li>
+                            <li><a href="contact.html">Yopougon - Abidjan</a></li>
+                            <li><a href="contact.html">Koumassi - Abidjan</a></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary><span class="wmf-label">Liens rapides</span><svg class="wmf-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+                        <ul>
+                            <li><a href="#home">Accueil</a></li>
+                            <li><a href="#dishes">Plats</a></li>
+                            <li><a href="#menu">Menu</a></li>
+                            <li><a href="#review">Critiques</a></li>
+                            <li><a href="#about">À propos</a></li>
+                            <li><a href="#order">Commande</a></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary><span class="wmf-label">Coordonnées</span><svg class="wmf-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+                        <ul>
+                            <li><a href="tel:+2250123456789">+225 01 23 45 67 89</a></li>
+                            <li><a href="tel:+2250987654321">+225 09 87 65 43 21</a></li>
+                            <li><a href="mailto:contact@fastfood.ci">contact@fastfood.ci</a></li>
+                            <li><a href="mailto:commande@fastfood.ci">commande@fastfood.ci</a></li>
+                            <li><a href="contact.html">Nous contacter</a></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary><span class="wmf-label">Suivez-nous</span><svg class="wmf-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+                        <ul>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">X (Twitter)</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                        </ul>
+                    </details>
+            </nav>
         </div>
+        <div class="wmf-bottom">
+            <p>&copy; <span data-year>2026</span> Fast Food Restaurant</p>
+            <a href="mailto:contact@fastfood.ci">contact@fastfood.ci</a>
+        </div>
+        <p class="wmf-mark" aria-hidden="true">Fast Food</p>
+    </footer>
+    <script>document.querySelector('[data-year]').textContent = new Date().getFullYear();</script>
 
-        <div class="credit">Copyright @2025 by <span>Fast Food Restaurant</span></div>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="ihb.js"></script>
     <script src="script.js"></script>
+    <script src="testimonials.js"></script>
+    <script src="conveyor-menu.js"></script>
+    <script src="dish-orbit.js"></script>
+    <script src="hero-41.js"></script>
+    <script src="liquid-nav.js"></script>
+    <script src="scroll-reveal.js"></script>
 </body>
 </html>

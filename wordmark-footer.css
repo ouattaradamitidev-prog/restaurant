@@ -1,0 +1,75 @@
+/* ==================== FOOTER "WORDMARK" ====================
+   Adapté du composant Wordmark Footer (HTML/CSS pur, sans Tailwind).
+   Le site applique partout "transition: all", "capitalize" et sans-serif : on neutralise ici. */
+.wmf{
+    --wmf-bg:#f6f5f1; --wmf-fg:#16171b; --wmf-muted:#5f636c; --wmf-primary:#c2410c;
+    position:relative;overflow:hidden;background:var(--wmf-bg);color:var(--wmf-fg);
+    font-family:Outfit,sans-serif;-webkit-font-smoothing:antialiased;
+}
+.wmf *{box-sizing:border-box;font-family:inherit;text-transform:none;transition:none}
+.wmf p,.wmf ul{margin:0;padding:0}
+.wmf ul{list-style:none}
+.wmf a{color:var(--wmf-muted)}
+.wmf a:hover{color:var(--wmf-fg)}
+.wmf a:focus-visible,.wmf summary:focus-visible{outline:2px solid var(--wmf-fg);outline-offset:2px;border-radius:4px}
+
+.wmf-top{
+    display:grid;gap:24px;width:100%;max-width:1200px;margin:0 auto;
+    padding:48px 24px 24px;
+}
+.wmf-name{display:block;font-size:25px;line-height:1;letter-spacing:-.02em;font-weight:500;color:var(--wmf-fg)}
+.wmf .wmf-desc{margin-top:16px;max-width:300px;font-size:14px;line-height:22px;color:var(--wmf-muted)}
+
+.wmf .wmf-label{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wmf-muted)}
+.wmf-nav{display:none}
+.wmf-nav ul{margin-top:16px;display:grid;gap:10px}
+.wmf-nav a{font-size:14px;transition:color .2s ease}
+
+/* Téléphone : chaque colonne se replie, un toucher sur le titre l'ouvre */
+.wmf-fold{display:grid;gap:4px;margin:0 -16px}
+.wmf-fold details{border-radius:16px}
+.wmf-fold details[open]{background:rgba(22,23,27,.04)}
+.wmf-fold summary{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 16px;cursor:pointer;list-style:none}
+.wmf-fold summary::-webkit-details-marker{display:none}
+.wmf-fold .wmf-label{font-size:12px}
+.wmf-plus{width:16px;height:16px;color:var(--wmf-muted);transition:transform .3s ease}
+.wmf-fold details[open] .wmf-plus{transform:rotate(45deg)}
+.wmf-fold ul{padding:0 16px 12px}
+.wmf-fold a{display:block;padding:12px 0;font-size:15px;overflow-wrap:anywhere}
+
+.wmf-bottom{
+    display:flex;flex-direction:column;gap:8px;width:100%;max-width:1200px;margin:0 auto;
+    padding:0 24px 24px;font-size:13px;color:var(--wmf-muted);
+}
+.wmf-bottom a{display:inline-flex;align-items:center;min-height:44px}
+
+/* Le nom, en très grand, qui s'estompe dans le fond */
+.wmf .wmf-mark{
+    margin:0 0 -.2em;text-align:center;font-size:clamp(88px,19vw,300px);line-height:.9;letter-spacing:-.04em;font-weight:300;
+    color:transparent;user-select:none;pointer-events:none;white-space:nowrap;
+    -webkit-background-clip:text;background-clip:text;
+    background-image:linear-gradient(to bottom,color-mix(in oklab,var(--wmf-primary) 32%,transparent),transparent 85%);
+}
+
+@media (min-width:640px){
+    .wmf-bottom{flex-direction:row;align-items:center;gap:24px}
+    .wmf-bottom a:last-child{margin-left:auto}
+}
+@media (min-width:768px){
+    .wmf-top{grid-template-columns:repeat(12,minmax(0,1fr));gap:48px;padding:64px 40px 40px}
+    .wmf-brand{grid-column:span 5}
+    .wmf-nav{display:grid;grid-column:7 / span 6;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+    .wmf-fold{display:none}
+    .wmf-bottom{padding:0 40px 24px}
+    .wmf-bottom a{min-height:0}
+}
+@media (min-width:1024px){
+    .wmf-brand{grid-column:span 4}
+    .wmf-nav{grid-column:5 / span 8;grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (pointer:coarse){
+    .wmf-nav a{display:inline-flex;align-items:center;min-height:44px}
+    .wmf-nav ul{gap:0;margin-top:8px}
+    .wmf-bottom a{min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){.wmf-plus{transition:none}}

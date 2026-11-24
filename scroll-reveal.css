@@ -1,0 +1,30 @@
+/* ==================== APPARITION AU SCROLL ====================
+   Les classes .rv / .is-in sont ajoutées par scroll-reveal.js uniquement
+   sur les éléments situés SOUS la zone visible au chargement.
+   Sans JavaScript, rien n'est masqué. Les classes sont retirées une fois
+   l'animation terminée pour ne pas gêner les survols et animations existants. */
+
+html .rv{
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    transition: opacity .7s cubic-bezier(.22, .61, .36, 1),
+                transform .7s cubic-bezier(.22, .61, .36, 1);
+    transition-delay: var(--rv-d, 0ms);
+    will-change: opacity, transform;
+}
+
+html .rv.is-in{
+    opacity: 1;
+    transform: none;
+}
+
+/* Sécurité : si le visiteur a choisi « réduire les animations », tout est visible tout de suite */
+@media (prefers-reduced-motion: reduce){
+    html .rv,
+    html .rv.is-in{
+        opacity: 1;
+        transform: none;
+        transition: none;
+        will-change: auto;
+    }
+}

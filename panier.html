@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panier - Fast Food</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="interactive-hover-button.css">
     <style>
         :root {
             --green: #f46a06;
@@ -329,45 +330,9 @@
             color: var(--green);
         }
 
-        .checkout-btn {
-            width: 100%;
-            padding: 1.5rem;
-            background: var(--green);
-            color: #fff;
-            font-size: 1.8rem;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
 
-        .checkout-btn:hover {
-            background: var(--black);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,.2);
-        }
 
-        .continue-shopping {
-            width: 100%;
-            padding: 1.2rem;
-            background: #eee;
-            color: var(--black);
-            font-size: 1.6rem;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 1rem;
-            text-align: center;
-            display: block;
-        }
 
-        .continue-shopping:hover {
-            background: var(--black);
-            color: #fff;
-        }
 
         .custom-notification {
             position: fixed;
@@ -482,14 +447,9 @@
                     <span id="total">0 FCFA</span>
                 </div>
 
-                <button class="checkout-btn" onclick="checkout()">
-                    <i class="fas fa-credit-card"></i>
-                    Passer la commande
-                </button>
+                <button type="button" class="ihb ihb--block ihb--lg ihb--mt" onclick="checkout()"><span class="ihb__label">Passer la commande</span><span class="ihb__over" aria-hidden="true"><span>Passer la commande</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></button>
 
-                <a href="index.html#menu" class="continue-shopping">
-                    Continuer mes achats
-                </a>
+                <a href="index.html#menu" class="ihb ihb--block ihb--mt"><span class="ihb__label">Continuer mes achats</span><span class="ihb__over" aria-hidden="true"><span>Continuer mes achats</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></a>
             </div>
         </div>
     </div>

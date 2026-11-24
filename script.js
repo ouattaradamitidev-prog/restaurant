@@ -1,17 +1,3 @@
-// Menu mobile toggle
-let menu = document.querySelector('#menu-bars');
-let navbar = document.querySelector('.navbar');
-
-menu.onclick = () => {
-    menu.classList.toggle('fa-times');
-    navbar.classList.toggle('active');
-}
-
-window.onscroll = () => {
-    menu.classList.remove('fa-times');
-    navbar.classList.remove('active');
-}
-
 // Search form toggle
 document.querySelector('#search-icon').onclick = () => {
     document.querySelector('#search-form').classList.toggle('active');
@@ -20,41 +6,6 @@ document.querySelector('#search-icon').onclick = () => {
 document.querySelector('#close').onclick = () => {
     document.querySelector('#search-form').classList.remove('active');
 }
-
-// Swiper home slider
-var swiper = new Swiper(".home-slider", {
-    spaceBetween: 30,
-    centeredSlides: true,
-    autoplay: {
-        delay: 4500,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    loop: true,
-});
-
-// Swiper critique slider
-var swiper2 = new Swiper(".critique-slider", {
-    spaceBetween: 20,
-    centeredSlides: true,
-    autoplay: { 
-        delay: 4000, 
-        disableOnInteraction: false 
-    },
-    pagination: { 
-        el: ".critique .swiper-pagination", 
-        clickable: true 
-    },
-    loop: true,
-    breakpoints: {
-        0: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-    }
-});
 
 // ==================== GESTION DU PANIER ====================
 let cart = JSON.parse(localStorage.getItem('fastfood_cart')) || [];
@@ -67,7 +18,7 @@ function updateCartCount() {
     }
 }
 
-function addToCart(name, price) {
+function addToCart(name, price, image) {
     const dishBox = Array.from(document.querySelectorAll('.box')).find(box => 
         box.getAttribute('data-name') === name
     );
@@ -79,6 +30,7 @@ function addToCart(name, price) {
             imageUrl = img.src;
         }
     }
+    if (image) imageUrl = image;
     
     const existingItem = cart.find(item => item.name === name);
     
@@ -110,7 +62,7 @@ function updateFavCount() {
     }
 }
 
-function addToFavorites(name) {
+function addToFavorites(name, priceArg, imageArg) {
     const dishBox = Array.from(document.querySelectorAll('.box')).find(box => 
         box.getAttribute('data-name') === name
     );
@@ -123,6 +75,8 @@ function addToFavorites(name) {
         if (img) imageUrl = img.src;
         price = parseInt(dishBox.getAttribute('data-price')) || 0;
     }
+    if (priceArg) price = priceArg;
+    if (imageArg) imageUrl = imageArg;
     
     const existingFavorite = favorites.find(fav => fav.name === name);
     
@@ -200,12 +154,8 @@ function viewDetails(name) {
                         et de qualité. Un vrai régal pour vos papilles !
                     </p>
                     <div class="modal-actions">
-                        <button onclick="addToCart('${name}', ${price}); closeModal();" class="btn-add-cart">
-                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                        </button>
-                        <button onclick="addToFavorites('${name}'); closeModal();" class="btn-add-fav">
-                            <i class="fas fa-heart"></i> Ajouter aux favoris
-                        </button>
+                        <button onclick="addToCart('${name}', ${price}); closeModal();" class="ihb">${ihbMarkup('Ajouter au panier')}</button>
+                        <button onclick="addToFavorites('${name}'); closeModal();" class="ihb">${ihbMarkup('Ajouter aux favoris')}</button>
                     </div>
                 </div>
             </div>
@@ -255,9 +205,64 @@ function showNotification(message, type = 'success') {
 // ==================== FORMULAIRE DE COMMANDE ====================
 const orderForm = document.getElementById('orderForm');
 if (orderForm) {
+    const formOpenedAt = Date.now();
+    const dateField = orderForm.querySelector('[name="date"]');
+
+    // Une date de commande ne peut pas être dans le passé
+    function setMinDate() {
+        if (!dateField) return;
+        const d = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+        dateField.min = d.toISOString().slice(0, 16);
+    }
+    setMinDate();
+
+    function fieldError(field) {
+        const v = field.value.trim();
+        if (field.required && !v) return 'Ce champ est obligatoire.';
+        if (!v) return '';
+        if (field.name === 'name' && v.length < 2) return 'Entrez votre nom complet.';
+        if (field.name === 'Number' && !/^\+?[0-9 ().-]{8,16}$/.test(v)) return 'Entrez un numéro de téléphone valide.';
+        if (field.name === 'order') {
+            const n = Number(v);
+            if (!Number.isInteger(n) || n < 1 || n > 50) return 'Choisissez une quantité entre 1 et 50.';
+        }
+        if (field.name === 'date') {
+            const t = new Date(v).getTime();
+            if (Number.isNaN(t) || t < Date.now() - 60000) return 'Choisissez une date et une heure à venir.';
+        }
+        if (field.name === 'address' && v.length < 5) return 'Précisez votre adresse de livraison.';
+        return '';
+    }
+
+    function showFieldError(field, msg) {
+        const out = document.getElementById(field.id + '-error');
+        if (out) out.textContent = msg;
+        if (msg) field.setAttribute('aria-invalid', 'true'); else field.removeAttribute('aria-invalid');
+    }
+
+    orderForm.addEventListener('input', e => {
+        if (e.target.getAttribute('aria-invalid') === 'true') showFieldError(e.target, fieldError(e.target));
+    });
+    orderForm.addEventListener('reset', () => {
+        orderForm.querySelectorAll('.of-input').forEach(f => showFieldError(f, ''));
+        setTimeout(setMinDate, 0);
+    });
+
     orderForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
+        // Anti-spam : champ piège rempli, ou envoi en moins de 3 secondes après l'ouverture de la page
+        if (this.elements['website'].value || Date.now() - formOpenedAt < 3000) return;
+
+        setMinDate();
+        let firstInvalid = null;
+        this.querySelectorAll('.of-input').forEach(f => {
+            const msg = fieldError(f);
+            showFieldError(f, msg);
+            if (msg && !firstInvalid) firstInvalid = f;
+        });
+        if (firstInvalid) { firstInvalid.focus(); return; }
+
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
         
@@ -275,28 +280,6 @@ if (orderForm) {
         this.reset();
     });
 }
-
-// ==================== NAVIGATION ACTIVE ====================
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.navbar a');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
-            link.classList.add('active');
-        }
-    });
-});
 
 // ==================== VÉRIFIER CONNEXION ====================
 function checkLoginStatus() {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Fast Food</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="interactive-hover-button.css">
     <style>
         :root {
             --green: #f46a06;
@@ -243,27 +244,7 @@
             min-height: 150px;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 1.5rem;
-            background: var(--green);
-            color: #fff;
-            font-size: 1.8rem;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
 
-        .submit-btn:hover {
-            background: var(--black);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,.2);
-        }
 
         .hours-section {
             padding: 5rem 7%;
@@ -441,10 +422,7 @@
                         <textarea id="message" name="message" required placeholder="Écrivez votre message ici..."></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i>
-                        Envoyer le message
-                    </button>
+                    <button type="submit" class="ihb ihb--block ihb--lg"><span class="ihb__label">Envoyer le message</span><span class="ihb__over" aria-hidden="true"><span>Envoyer le message</span><svg class="ihb__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="ihb__dot" aria-hidden="true"></span></button>
                 </form>
             </div>
         </div>
